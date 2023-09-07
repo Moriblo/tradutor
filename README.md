@@ -1,16 +1,16 @@
 # [tradutor]
- API_B2 do MVP da Sprint 3 do curso de pós gradução em Engenharia de Software da PUC.
- Trata-se de uma API para realização de busca de links de imagem para uma dada Obra e Artista.
+API_B1 do MVP da Sprint 3 do curso de pós gradução em Engenharia de Software da PUC.
+Trata-se de uma API para realização da tradução de Português para Inglês de palavras ou frases. A aplicação neste projeto se deve ao fato de que a API externa do Metropolitan Museum só aceita o nome da obra em inglês.
 
 ## Arquitetura
-Arquitetura do Projeto Obras de Arte com destaque para a API_B2, que oferta o serviço de search nas rota de um museu especificado. Pela dificuldade em encontrar museus que disponibilizassem os links das imagens de suas obras sem restrição de "copyright", foi utilizado somente a base do metropolitan museum (MET).
+Arquitetura do Projeto Obras de Arte com destaque para a API_B1, que oferta o serviço de tradução de português para inglês.
 
-![API_B2](https://github.com/Moriblo/smuseum/blob/main/API_B2.png)
+![API_B1]()
 
 ## Estrutura do Código e Chamadas
 Estrutura dos códigos de cada API e chamadas entre estes.
 
-![COMP_B2](https://github.com/Moriblo/smuseum/blob/main/COMP_B2.png)
+![COMP_B1]()
 
 ## Projeto
-Detalhamento dos requisitos (REQ) do MVP e demais issues tratados [https://github.com/users/Moriblo/projects/2]
+Detalhamento dos requisitos (REQ) do MVP e demais issues tratados [https://github.com/users/Moriblo/projects/2/views/6]
