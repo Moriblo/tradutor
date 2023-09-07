@@ -8,7 +8,7 @@ Arquitetura do Projeto Obras de Arte com destaque para a API_B1, que oferta o se
 ![API_B1](https://github.com/Moriblo/tradutor/blob/main/API_B1.png)
 
 ## Estrutura do Código e Chamadas
-Estrutura dos códigos de cada API e chamadas entre estes.
+Estrutura dos códigos de cada API e chamadas.
 
 ![COMP_B1](https://github.com/Moriblo/tradutor/blob/main/COMP_B1.png)
 
