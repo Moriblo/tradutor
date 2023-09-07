@@ -1,4 +1,4 @@
-# [smuseum]
+# [tradutor]
  API_B2 do MVP da Sprint 3 do curso de pós gradução em Engenharia de Software da PUC.
  Trata-se de uma API para realização de busca de links de imagem para uma dada Obra e Artista.
 
