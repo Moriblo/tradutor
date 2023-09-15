@@ -23,7 +23,7 @@ logger = setup_logger(service_name)
 """ Informações de identificação, acesso e documentação do serviço
 """
 # ==============================================================================
-info = Info(title="Traduz Obra", version="1.0.0")
+info = Info(title="Realiza Tradução de Português para Inglês", version="1.0.0")
 app = OpenAPI(__name__, info=info)
 
 # ==============================================================================
@@ -48,11 +48,16 @@ CORS(app, supports_credentials=False)
 #  =====================================================================================
 info = Info(title="API Tradutor", version="1.0.0")
 app = OpenAPI(__name__, info=info)
-CORS(app)
 
-# Definindo tags
 home_tag = Tag(name="Documentação", description="Apresentação da documentação via Swagger.")
-obra_tag = Tag(name="Rotas em tradutor", description="Realiza tradução do português para o inglês")
+obra_tag = Tag(name="Rota em tradutor", description="Realiza tradução do português para o inglês")
+
+# ======================================================================================
+""" Configurações de "Cross-Origin Resource Sharing"
+"""
+# ======================================================================================
+
+CORS(app)
 
 # ========================================================================================
 """ Rota /openapi para geração da documentação via Swagger
@@ -68,11 +73,9 @@ def home():
 """ Rota /tradutor para tratar o fetch de `GET` do script.js.
 """
 # ==============================================================================
-#> @app.route('/tradutor', methods=['GET'])
 @app.get('/tradutor', methods=['GET'], tags=[obra_tag],
             responses={"200": TradutorSchema})
 
-#> def tradutor():
 def get_tradutor(query: ObraBuscaSchema):
     """Traduz do português para o inglês.
     """
