@@ -17,8 +17,8 @@ class ObraBuscaSchema(BaseModel):
     """ Define como deve ser a estrutura que representa a busca. Que será
         feita com base na obra e artista.
     """
-    nome: str = "Mona Lisa"
-    artista: str = "Leonardo da Vinci"
+    entrada: str = "Monalisa"
+    # artista: str = "Leonardo da Vinci"
 
 
 class ListagemObrasSchema(BaseModel):
@@ -54,13 +54,14 @@ class ObraViewSchema(BaseModel):
     link: str = "https://collections.louvre.fr/en/ark:/53355/cl010066723"
 
 
-class ObraDelSchema(BaseModel):
+class TradutorSchema(BaseModel):
     """ Define como deve ser a estrutura do dado retornado após uma requisição
         de remoção.
     """
+    entrada: str
     mesage: str
-    nome: str
-    artista: str
+    saída: str
+    # artista: str
 
 def apresenta_obra(obra: Obra):
     """ Retorna uma representação da obra seguindo o schema definido em

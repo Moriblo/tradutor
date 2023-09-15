@@ -42,12 +42,41 @@ CORS(app, supports_credentials=False)
 # CORS(app, supports_credentials=True, expose_headers=["Authorization"])
 # Adicionalmente utilizar da biblioteca PyJWT
 
+# ======================================================================================
+""" Informações de identificação, acesso e documentação do serviço
+"""
+#  =====================================================================================
+info = Info(title="API Tradutor", version="1.0.0")
+app = OpenAPI(__name__, info=info)
+CORS(app)
+
+# Definindo tags
+home_tag = Tag(name="Documentação", description="Apresentação da documentação via Swagger.")
+obra_tag = Tag(name="Rotas em tradutor", description="Realiza tradução do português para o inglês")
+
+# ========================================================================================
+""" Rota /openapi para geração da documentação via Swagger
+"""
+# ========================================================================================
+@app.get('/', tags=[home_tag])
+def home():
+    """Redireciona para /openapi/swagger.
+    """
+    return redirect('/openapi/swagger')
+
 # ==============================================================================
 """ Rota /tradutor para tratar o fetch de `GET` do script.js.
 """
 # ==============================================================================
-@app.route('/tradutor', methods=['GET'])
-def tradutor():
+#> @app.route('/tradutor', methods=['GET'])
+@app.get('/tradutor', methods=['GET'], tags=[obra_tag],
+            responses={"200": TradutorSchema})
+
+#> def tradutor():
+def get_tradutor(query: ObraBuscaSchema):
+    """Traduz do português para o inglês.
+    """
+
     # Lê identificação da origem da solicitação de uso desta API
     origin = request.headers.get('X-Origin')
     
@@ -56,17 +85,23 @@ def tradutor():
 
     # Verifica se o parâmetro 'entrada' foi fornecido
     if not entrada:
-        return 'Erro: nenhum texto fornecido para tradução'
+        mesage = "Erro: nenhum texto fornecido para tradução"
+        return mesage
+    else:
+        # Traduz o texto para o inglês
+        translator = Translator(service_urls=['translate.google.com'])
+        translation = translator.translate(entrada, src='pt', dest='en')
+        print(f"Em portugês: {entrada} em inglês: {translation.text}")
+        print(f"Origin: {origin}")
+        translation.json = json.dumps(translation.text)
+        
+        # Retorna o conteúdo traduzido e mensagem de confirmação
+        logger.debug(f"Tradução realizada de {entrada} para {translation.json}")
+        mesage ="Tradução realizada"
+        translation.json = translation.json.replace('"', '')
+        return jsonify(entrada, mesage, translation.json)
 
-    # Traduz o texto para o inglês
-    translator = Translator(service_urls=['translate.google.com'])
-    translation = translator.translate(entrada, src='pt', dest='en')
-    print(f"Em portugês: {entrada} em inglês: {translation.text}")
-    print(f"Origin: {origin}")
-    translation.json = json.dumps(translation.text)
-    return translation.json
-
-    pass
+        pass
 
 if __name__ == '__main__':
     app.run(port=5001, debug=True)
