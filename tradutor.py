@@ -1,3 +1,7 @@
+# =============================================================================
+""" 1 - Carga Inicial.
+"""
+# =============================================================================
 from googletrans import Translator
 
 from flask_openapi3 import OpenAPI, Info, Tag
@@ -11,68 +15,63 @@ import os, sys, json
 
 from logger import setup_logger
 
+# ===============================================================================
+""" 2 - Inicializa variáveis de Informações gerais de identificação do serviço.
+"""
+#  ==============================================================================
+info = Info(title="API Tradutor", version="1.0.0")
+app = OpenAPI(__name__, info=info)
+
+home_tag = Tag(name="Documentação", description="Apresentação da documentação via Swagger.")
+obra_tag = Tag(name="Rota em tradutor", description="Realiza tradução do português para o inglês")
+doc_tag = Tag(name="Rota em tradutor", description="Documentação da API tradutor no github")
+
 # ==============================================================================
-""" Inicializa service_name com o nome exclusivo do serviço para fins de geração
-    de arquivo de log.
+""" 3 - Inicializa "service_name" para fins de geração de arquivo de log.
 """
 # ==============================================================================
 service_name = "tradutor"
 logger = setup_logger(service_name)
 
 # ==============================================================================
-""" Informações de identificação, acesso e documentação do serviço
-"""
-# ==============================================================================
-info = Info(title="Realiza Tradução de Português para Inglês", version="1.0.0")
-app = OpenAPI(__name__, info=info)
-
-# ==============================================================================
-""" Configurações de "Cross-Origin Resource Sharing"
-"""
-# ==============================================================================
+""" 4 - Configurações de "Cross-Origin Resource Sharing" (CORS).
 # Foi colocado "supports_credentials=False" para evitar possíveis conflitos com
 # algum tipo de configuração de browser. Mas não é a melhor recomendação por 
 # segurança. Para melhorar a segurança desta API, o mais indicado segue nas 
 # linhas abaixo comentadas.
+#> origins_permitidas = ["Obras de Arte"]
+#> Configurando o CORS com suporte a credenciais
+#> CORS(app, origins=origins_permitidas, supports_credentials=True)
+#> CORS(app, supports_credentials=True, expose_headers=["Authorization"])
+#> Adicionalmente utilizar da biblioteca PyJWT
+"""
+# ==============================================================================
 CORS(app, supports_credentials=False)
 
-# origins_permitidas = ["Obras de Arte"]
-# Configurando o CORS com suporte a credenciais
-# CORS(app, origins=origins_permitidas, supports_credentials=True)
-# CORS(app, supports_credentials=True, expose_headers=["Authorization"])
-# Adicionalmente utilizar da biblioteca PyJWT
-
-# ======================================================================================
-""" Informações de identificação, acesso e documentação do serviço
+# ================================================================================
+""" 5.1 - DOCUMENTAÇÂO: Rota "/" para geração da documentação via Swagger.
 """
-#  =====================================================================================
-info = Info(title="API Tradutor", version="1.0.0")
-app = OpenAPI(__name__, info=info)
-
-home_tag = Tag(name="Documentação", description="Apresentação da documentação via Swagger.")
-obra_tag = Tag(name="Rota em tradutor", description="Realiza tradução do português para o inglês")
-
-# ======================================================================================
-""" Configurações de "Cross-Origin Resource Sharing"
-"""
-# ======================================================================================
-
-CORS(app)
-
-# ========================================================================================
-""" Rota /openapi para geração da documentação via Swagger
-"""
-# ========================================================================================
+# ================================================================================
 @app.get('/', tags=[home_tag])
 def home():
     """Redireciona para /openapi/swagger.
     """
     return redirect('/openapi/swagger')
 
-# ==============================================================================
-""" Rota /tradutor para tratar o fetch de `GET` do script.js.
+# ================================================================================
+""" 5.2 - DOCUMENTAÇÂO: Rota "/doc" para documentação via github.
 """
-# ==============================================================================
+# ================================================================================
+@app.get('/doc', tags=[doc_tag])
+def doc():
+    """Redireciona para documentação no github.
+    """
+    return redirect('https://github.com/Moriblo/tradutor')
+
+# ==============================================================================++
+""" 6 - Rota "/tradutor" para tratar o fetch de `GET`.
+"""
+# ==============================================================================++
 @app.get('/tradutor', methods=['GET'], tags=[obra_tag],
             responses={"200": TradutorSchema})
 
@@ -106,5 +105,9 @@ def get_tradutor(query: ObraBuscaSchema):
 
         pass
 
+# ===============================================================================
+""" 7 - Garante a disponibilidade da API em "suspenso".
+"""
+# ===============================================================================
 if __name__ == '__main__':
     app.run(port=5001, debug=True)
