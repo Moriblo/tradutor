@@ -1,6 +1,6 @@
 # [Projeto Obras de Arte](https://github.com/Moriblo/front)
 
-## API Tradutor [tradutor.py]
+## API_B1 Tradutor [tradutor.py]
 
 API_B1 do MVP da Sprint 3 do curso de pós gradução em Engenharia de Software da PUC.
 Trata-se de uma API para realização da tradução de Português para Inglês.
