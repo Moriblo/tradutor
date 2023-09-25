@@ -1,4 +1,4 @@
-# <a href="https://github.com/Moriblo"><img src="(https://github.com/Moriblo/tradutor/blob/main/Tio_Sam.png)" width="40" height="40"></a> API_B1 Tradutor [tradutor.py] <a href="https://github.com/Moriblo"><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f519.png" width="20" height="20"></a>
+# <a href="https://github.com/Moriblo"><img src="(https://github.com/Moriblo/tradutor/blob/main/Tio_Sam.png)" width="60" height="80"></a> API_B1 Tradutor [tradutor.py] <a href="https://github.com/Moriblo"><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f519.png" width="20" height="20"></a>
 
 ## API_B1 Tradutor [tradutor.py]
 
