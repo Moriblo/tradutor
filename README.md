@@ -1,4 +1,4 @@
-# [Projeto Obras de Arte](https://github.com/Moriblo/front)
+# [Projeto Obras de Arte](https://github.com/Moriblo)
 
 ## API_B1 Tradutor [tradutor.py]
 
