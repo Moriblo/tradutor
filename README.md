@@ -5,8 +5,6 @@
 API_B1 do MVP da Sprint 3 do curso de pós gradução em Engenharia de Software da PUC.
 Trata-se de uma API para realização da tradução de Português para Inglês.
 
-[Tradutor.exe](https://github.com/Moriblo/tradutor/blob/main/tradutor.exe)
-
 ### Estrutura do Código e Chamadas
 
 Estrutura do código da API e chamadas.
