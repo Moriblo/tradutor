@@ -1,4 +1,4 @@
-# ![Tio_Sam](https://github.com/Moriblo/tradutor/blob/main/Tio_Sam.png) API_B1 Tradutor [tradutor.py] <a href="https://github.com/Moriblo"><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f519.png" width="20" height="20"></a>
+# <a href="https://github.com/Moriblo"><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f519.png" width="20" height="20"></a> API_B1 Tradutor [tradutor.py]
 
 API_B1 do MVP da Sprint 3 do curso de pós gradução em Engenharia de Software da PUC.
 Trata-se de uma API para realização da tradução de Português para Inglês.
